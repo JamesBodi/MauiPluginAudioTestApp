@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiPluginAudioTestApp.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Spacing="25"
+            Padding="30,0"
+            VerticalOptions="Center">
+
+            <Image
+                Source="dotnet_bot.png"
+                SemanticProperties.Description="Cute dot net bot waving hi to you!"
+                HeightRequest="200"
+                HorizontalOptions="Center" />
+
+            <Label
+                Text="Audio Tester"
+                SemanticProperties.HeadingLevel="Level1"
+                FontSize="32"
+                HorizontalOptions="Center" />
+
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+
+                <Button
+                Text="Play Voice"
+                Clicked="PlayVoice"
+                HorizontalOptions="Center" />
+
+                <Button
+                Text="Play Song"
+                Clicked="PlaySong"
+                HorizontalOptions="Center" />
+
+                <Button
+                Text="Play Beep"
+                Clicked="PlayBeep"
+                HorizontalOptions="Center" />
+
+                <Button
+                x:Name="PauseBtn"
+                Text="Pause"
+                Clicked="OnPauseClicked"
+                HorizontalOptions="Center" />
+            </HorizontalStackLayout>
+
+            <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                <Button x:Name="RecordButton"
+                Text="Record"
+                Clicked="Record"
+                HorizontalOptions="Center" />
+
+                <Button x:Name="StopButton"
+                        IsEnabled="False"
+                Text="Stop"
+                Clicked="StopRecording"
+                HorizontalOptions="Center" />
+
+                <Button
+                Text="Play"
+                Clicked="PlayRecording"
+                HorizontalOptions="Center" />
+
+            </HorizontalStackLayout>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

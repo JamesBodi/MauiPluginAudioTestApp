@@ -1,0 +1,90 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFrameworks>net8.0-android;net8.0-ios</TargetFrameworks>
+		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
+		<!-- <TargetFrameworks>$(TargetFrameworks);net6.0-tizen</TargetFrameworks> -->
+		<OutputType>Exe</OutputType>
+		<RootNamespace>MauiPluginAudioTestApp</RootNamespace>
+		<UseMaui>true</UseMaui>
+		<SingleProject>true</SingleProject>
+		<ImplicitUsings>enable</ImplicitUsings>
+
+		<!-- Display name -->
+		<ApplicationTitle>MauiPluginAudioTestApp</ApplicationTitle>
+
+		<!-- App Identifier -->
+		<ApplicationId>com.logicware.autoscribe</ApplicationId>
+		<ApplicationIdGuid>baecf4e0-9ada-4ded-b22d-3a8b7eae9c79</ApplicationIdGuid>
+
+		<!-- Versions -->
+		<ApplicationDisplayVersion>1.0</ApplicationDisplayVersion>
+		<ApplicationVersion>1</ApplicationVersion>
+
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'ios'">14.2</SupportedOSPlatformVersion>
+		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'android'">21.0</SupportedOSPlatformVersion>
+	</PropertyGroup>
+
+	<PropertyGroup Condition="'$(Configuration)|$(TargetFramework)|$(Platform)'=='Debug|net8.0-ios|AnyCPU'">
+	  <CreatePackage>false</CreatePackage>
+	  <CodesignProvision>Development Profile</CodesignProvision>
+	  <CodesignKey>iPhone Developer</CodesignKey>
+	</PropertyGroup>
+	<ItemGroup>
+		<!-- App Icon -->
+		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#512BD4" />
+
+		<!-- Splash Screen -->
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
+
+		<!-- Images -->
+		<MauiImage Include="Resources\Images\*" />
+		<MauiImage Update="Resources\Images\dotnet_bot.svg" BaseSize="168,208" />
+
+		<!-- Custom Fonts -->
+		<MauiFont Include="Resources\Fonts\*" />
+
+		<!-- Raw Assets (also remove the "Resources\Raw" prefix) -->
+		<MauiAsset Include="Resources\Raw\**" LogicalName="%(RecursiveDir)%(Filename)%(Extension)" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Include="Plugin.Maui.Audio" Version="3.0.0-preview2" />
+	  <PackageReference Include="CommunityToolkit.Maui" Version="7.0.1" />
+	  <PackageReference Include="NLog.Extensions.Logging" Version="5.3.8" />
+	  <PackageReference Include="NLog.Targets.MauiLog" Version="8.0.0" />
+	  <PackageReference Include="Microsoft.Maui.Essentials" Version="8.0.3" />
+	  <PackageReference Include="Microsoft.Maui.Graphics" Version="8.0.3" />
+	  <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <None Remove="Resources\Fonts\Gilroy-Light.ttf" />
+	  <None Remove="Resources\Fonts\Gilroy-Regular.ttf" />
+	  <None Remove="Resources\Fonts\Gilroy-SemiBold.ttf" />
+	  <None Remove="Resources\Fonts\Gilroy-UltraLight.ttf" />
+	  <None Remove="Resources\Raw\ukelele.mp3" />
+	  <None Remove="Resources\Raw\beep_beep.wav" />
+	</ItemGroup>
+	<ItemGroup>
+	  <BundleResource Include="Resources\Fonts\Gilroy-Light.ttf" />
+	  <BundleResource Include="Resources\Fonts\Gilroy-Regular.ttf" />
+	  <BundleResource Include="Resources\Fonts\Gilroy-SemiBold.ttf" />
+	  <BundleResource Include="Resources\Fonts\Gilroy-UltraLight.ttf" />
+	  <BundleResource Include="Resources\Raw\ukelele.mp3" />
+	  <BundleResource Include="Resources\Raw\beep_beep.wav" />
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiAsset Update="Resources\Raw\ukelele.mp3">
+	    <LogicalName>ukelele.mp3</LogicalName>
+	  </MauiAsset>
+	  <MauiAsset Update="Resources\Raw\beep_beep.wav">
+	    <LogicalName>beep_beep.wav</LogicalName>
+	  </MauiAsset>
+	</ItemGroup>
+	<ItemGroup>
+	  <MauiXaml Update="MainPage.xaml">
+	    <SubType></SubType>
+	  </MauiXaml>
+	</ItemGroup>
+</Project>
